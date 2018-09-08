@@ -24,9 +24,9 @@ Word of Grace Church Apps
 
 ### Version 1
 * Use Cordova to create a working cross-platform hybrid mobile application which can do:
-** Display the list of sermons with the correct title
-** Display a sermon page
-*** Sermon page shows Title, Audio Player, Link to Blog post
+   * Display the list of sermons with the correct title
+      * Display a sermon page
+      * Sermon page shows Title, Audio Player, Link to Blog post
 * Cache the api response on device with TTL(time to live) to avoid repeated calls.
 
 ### Version 2
