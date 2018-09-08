@@ -84,10 +84,11 @@ class BlogPost:
                             with tag('p'):
                                 with tag('a', href=post['blog_url']):
                                     text('[Blog]')
-                                doc.asis(' | ')
-                                with tag('a', href=post['audio_url']):
-                                    text('[Audio]')
+                                # doc.asis(' | ')
+                                # with tag('a', href=post['audio_url']+'?dl=1'):
+                                #      text('[Download Audio]')
                                 text(' Title: {}'.format(post['title']))
+                                doc.asis('<audio controls src={} type="audio/mpeg"/>'.format(post['audio_url']))
                         doc.stag('hr')
 
         return doc.getvalue()
