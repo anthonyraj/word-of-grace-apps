@@ -1,5 +1,6 @@
 import requests
 import re
+from pathlib import Path
 
 """
     BlogPost class helps fetch the blog posts from wordpress using wp-json REST api
@@ -12,6 +13,8 @@ class BlogPost:
         self.posts = []
         self.page_count = page_count
         self.url_regex = r'https://[\w\.]+[/\w%20]+.mp3'
+        self.html_folder = Path('html')
+        self.html_extension = 'html'
 
     def fetch_posts(self):
         for page in range(1,self.page_count):
@@ -55,18 +58,22 @@ class BlogPost:
         print("Total posts with audio recording: {}".format(len(self.posts)))
         return len(self.posts)
 
-    def write_posts(self,output_html):
+    def create_output_file(self,title):
+        html_file = '{}.{}'.format('-'.join(title.lower().split()), self.html_extension)
+        return self.html_folder / html_file
+
+    def write_posts(self,title="Word of Grace Posts"):
+        output_html = self.create_output_file(title)
         with open(output_html,'w+') as file:
-            file.write('<h3>Word of Grace Posts</h3>')
-            file.write('<ul>')
+            file.write('<h3>{}</h3><ul>'.format(title))
             for item in self.posts:
-                file.write('<li><p>{}</p>'.format(item['title']))
-                file.write('<p>{}</p>'.format(item['blog_url']))
-                file.write('<p><a href="{}">{}</a></p></li>'.format(item['audio_url'],item['audio_url']))
+                file.write('<li><p>Title: {}</p>'.format(item['title']))
+                file.write('<p><a href="{}">{}</a> | '.format(item['blog_url'], 'Blog Url'))
+                file.write('<a href="{}">{}</a></p></li><hr/>'.format(item['audio_url'], 'Dropbox Url'))
             file.write('</ul>')
 
 blog = BlogPost(10)
 blog.fetch_posts()
 #blog.list_posts()
-blog.write_posts('html/word-of-grace-posts.html')
+blog.write_posts(title='Word of Grace Posts 8 Sept 2018')
 blog.total_posts()
