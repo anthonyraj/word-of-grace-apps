@@ -19,3 +19,17 @@ Word of Grace Church Apps
 
 ### Version 3
 * Need a way to receive updates from wordpress or should wordpress itself
+
+## Mobile Apps
+
+### Version 1
+* Use Cordova to create a working cross-platform hybrid mobile application which can do:
+** Display the list of sermons with the correct title
+** Display a sermon page
+*** Sermon page shows Title, Audio Player, Link to Blog post
+* Cache the api response on device with TTL(time to live) to avoid repeated calls.
+
+### Version 2
+* Native OS versions
+* Downloading Audio files (>35MB) on device
+* Search sermons via tags?
