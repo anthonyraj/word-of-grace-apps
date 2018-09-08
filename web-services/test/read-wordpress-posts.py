@@ -1,6 +1,7 @@
 import requests
 import re
 from pathlib import Path
+from yattag import Doc
 
 """
     BlogPost class helps fetch the blog posts from wordpress using wp-json REST api
@@ -65,12 +66,31 @@ class BlogPost:
     def write_posts(self,title="Word of Grace Posts"):
         output_html = self.create_output_file(title)
         with open(output_html,'w+') as file:
-            file.write('<h3>{}</h3><ul>'.format(title))
-            for item in self.posts:
-                file.write('<li><p>Title: {}</p>'.format(item['title']))
-                file.write('<p><a href="{}">{}</a> | '.format(item['blog_url'], 'Blog Url'))
-                file.write('<a href="{}">{}</a></p></li><hr/>'.format(item['audio_url'], 'Dropbox Url'))
-            file.write('</ul>')
+            generated_html = self.generate_html(title)
+            file.write(generated_html)
+
+    def generate_html(self,title):
+        doc, tag, text = Doc().tagtext()
+        doc.asis('<!DOCTYPE html>')
+        with tag('html'):
+            with tag('title'):
+                text(title)
+            with tag('body'):
+                with tag('h3'):
+                    text(title)
+                with tag('ol', id='sermon list'):
+                    for index,post in enumerate(self.posts):
+                        with tag('li', number=index, id='sermon post'):
+                            with tag('p'):
+                                with tag('a', href=post['blog_url']):
+                                    text('[Blog]')
+                                doc.asis(' | ')
+                                with tag('a', href=post['audio_url']):
+                                    text('[Audio]')
+                                text(' Title: {}'.format(post['title']))
+                        doc.stag('hr')
+
+        return doc.getvalue()
 
 blog = BlogPost(10)
 blog.fetch_posts()
