@@ -1,6 +1,11 @@
 import requests
 import re
 
+"""
+    BlogPost class helps fetch the blog posts from wordpress using wp-json REST api
+    https://developer.wordpress.org/rest-api/reference/posts
+"""
+
 class BlogPost:
     def __init__(self,page_count=10):
         self.url = "http://www.wordofgracechurch.org/wp-json/wp/v2/posts"
@@ -63,5 +68,5 @@ class BlogPost:
 blog = BlogPost(10)
 blog.fetch_posts()
 #blog.list_posts()
-blog.write_posts('word-of-grace-posts.html')
+blog.write_posts('html/word-of-grace-posts.html')
 blog.total_posts()
