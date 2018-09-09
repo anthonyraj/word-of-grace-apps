@@ -11,7 +11,7 @@ Word of Grace Church Apps
 ### Version 1
 * The api fetches the Title, Blog url, Audio url (Dropbox) from wordpress and creates a json response
 * The json response can be used to display the list of sermons on the mobile app (Android/iOS)
-* Hosting the api as a Flask or Django app or use AWS Lambda?
+* Hosting the api as a Flask or Django app or use AWS Lambda or host a static json at AWS S3 or Dropbox?
 
 ### Version 2
 * The api response needs to be cached with a TTL(time to live)
