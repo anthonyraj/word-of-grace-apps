@@ -5,7 +5,7 @@ Word of Grace Church Apps
 * Fetch the posts and provide the details needed to render the sermon listing on the mobile 
 
 ### Notes
-* Ideally it would be great if the wordpress rest api (https://developer.wordpress.org/rest-api/reference) had a way to get the audio url directly as an atribute
+* Ideally it would be great if the wordpress rest api:[link](https://developer.wordpress.org/rest-api/reference) had a way to get the audio url directly as an atribute
 * Currently the audio url is embedded within the content and needs regular expression to parse it out
 
 ### Version 1
@@ -21,6 +21,7 @@ Word of Grace Church Apps
 * Need a way to receive updates from wordpress or should wordpress itself
 
 ## Mobile Apps
+* There are so many options to develop cross platform app:[link](https://www.outsystems.com/blog/free-cross-platform-mobile-app-development-tools-compared.html). Worth the read.
 
 ### Version 1
 * Use Cordova to create a working cross-platform hybrid mobile application which can do:
